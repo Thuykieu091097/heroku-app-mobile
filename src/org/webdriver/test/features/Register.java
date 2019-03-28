@@ -3,6 +3,7 @@ package org.webdriver.test.features;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.webdriver.test.PageObject;
 
 
 public class Register extends PageObject {

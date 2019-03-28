@@ -1,4 +1,4 @@
-package org.webdriver.test.features;
+package org.webdriver.test;
 
 import org.junit.After;
 import org.junit.Before;

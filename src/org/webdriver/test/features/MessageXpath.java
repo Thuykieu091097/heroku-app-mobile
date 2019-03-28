@@ -23,6 +23,7 @@ public class MessageXpath {
 	//xpath fields at login screen
 	public static String EMAIL_FIELD_LOGIN = "//input[@id='email']";
 	public static String PASSWORD_FIELD_LOGIN = "//input[@id='password']";
+	
 }
 
 

@@ -2,6 +2,7 @@ package org.webdriver.test.features;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.webdriver.test.PageObject;
 
 public class Login extends PageObject {
 	/*

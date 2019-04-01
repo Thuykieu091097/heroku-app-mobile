@@ -3,6 +3,8 @@ package org.webdriver.test.features;
 import org.junit.Before;
 import org.junit.Test;
 import org.webdriver.test.PageObject;
+import org.webdriver.test.ui.HomePage;
+import org.webdriver.test.ui.LoginPage;
 
 public class Login extends PageObject {
 	/*
@@ -14,14 +16,17 @@ public class Login extends PageObject {
 	public void click() {
 		clickOnElementByXpath(Locator.MEMBER_BUTTON_HOME_XPATH);
 		clickOnElementByXpath(Locator.LOGIN_BUTTON_HOME_XPATH);
-
+		
 	}
-
+	
+ 
 	// LOGIN FAIL
 	@Test
 	public void testLoginwithBlank() {
-		// click button login
-		clickOnElementByXpath(Locator.LOGIN_BUTTON_XPATH);
+		Login login = new Login(driver);
+		HomePage homePage = login.login();
+		/*// click button login
+		clickOnElementByXpath(Locator.LOGIN_BUTTON_XPATH);*/
 
 	}
 

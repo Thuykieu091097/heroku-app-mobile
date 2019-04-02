@@ -11,48 +11,41 @@ public class Login extends PageObject {
 	 * Cách 1-@Before public void navigate() { driver.navigate().to(loginURL); }
 	 */
 	// Cách 2
+	LoginPage loginPg;
+	HomePage clickHomePg;
 
 	@Before
 	public void click() {
-		clickOnElementByXpath(Locator.MEMBER_BUTTON_HOME_XPATH);
-		clickOnElementByXpath(Locator.LOGIN_BUTTON_HOME_XPATH);
-		
+		clickHomePg = new HomePage(driver);
+		clickHomePg.homeClick(HomePage.LOGIN_BUTTON_HOME_XPATH);
 	}
-	
- 
+
 	// LOGIN FAIL
 	@Test
 	public void testLoginwithBlank() {
-		Login login = new Login(driver);
-		HomePage homePage = login.login();
-		/*// click button login
-		clickOnElementByXpath(Locator.LOGIN_BUTTON_XPATH);*/
-
+		loginPg = new LoginPage(driver);
+		loginPg.login("", "");
 	}
 
 	@Test
 	public void testLoginwithBlankEmail() {
 		// input Password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSLOGIN);
-
-		// click button login
-		clickOnElementByXpath(Locator.LOGIN_BUTTON_XPATH);
+		loginPg = new LoginPage(driver);
+		loginPg.login("", MessageInput.PASSLOGIN);
 	}
 
 	@Test
 	public void testLoginwithBlankPass() {
 
 		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAILLOGIN);
-
-		// click button login
-		clickOnElementByXpath(Locator.LOGIN_BUTTON_XPATH);
+		loginPg = new LoginPage(driver);
+		loginPg.login(MessageInput.EMAILLOGIN,"");
 	}
 
 	@Test
 	public void BackHome() {
 		// click button back
-		clickOnElementByXpath(Locator.BACK_HOME_LOGIN);
+		clickOnElementByXpath(LoginPage.BACK_HOME_LOGIN);
 
 		// Back home
 		driver.get(homeURL);
@@ -61,7 +54,7 @@ public class Login extends PageObject {
 	@Test
 	public void BackRegister() {
 		// click button back
-		clickOnElementByXpath(Locator.BACK_REGISTER_LOGIN);
+		clickOnElementByXpath(LoginPage.BACK_REGISTER_LOGIN);
 
 		// Back register
 		driver.get(registerURL);
@@ -70,7 +63,7 @@ public class Login extends PageObject {
 	@Test
 	public void LoginbyGoogle() {
 		// click link login by google
-		clickOnElementByXpath(Locator.BACK_GOOGLE_LOGIN);
+		clickOnElementByXpath(LoginPage.BACK_GOOGLE_LOGIN);
 
 		// Access account google browser
 		driver.get(loginbyGG);
@@ -80,7 +73,7 @@ public class Login extends PageObject {
 	public void ForgotPass() {
 
 		// click link fogot
-		clickOnElementByXpath(Locator.BACK_FORGOT_PASSWORD_LOGIN);
+		clickOnElementByXpath(LoginPage.BACK_FORGOT_PASSWORD_LOGIN);
 
 		// access...
 		driver.get(resetURL);
@@ -90,15 +83,8 @@ public class Login extends PageObject {
 	// Login success
 	@Test
 	public void testLoginwithInputFull() {
-
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAILLOGIN);
-		// input Password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSLOGIN);
-
-		// click button login
-		clickOnElementByXpath(Locator.LOGIN_BUTTON_XPATH);
-
+		loginPg = new LoginPage(driver);
+		loginPg.login(MessageInput.EMAILLOGIN, MessageInput.PASSLOGIN);
 		// Back home
 		driver.get(homeURL);
 	}

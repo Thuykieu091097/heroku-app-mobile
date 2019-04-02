@@ -13,3 +13,4 @@ public class MessageInput {
 	public static String INPUT_FAIL = "01";
 }
 
+

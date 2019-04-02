@@ -4,25 +4,28 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.webdriver.test.PageObject;
+import org.webdriver.test.ui.HomePage;
+import org.webdriver.test.ui.RegisterPage;
 
 public class Register extends PageObject {
 	/*
 	 * Cách 1- @Before public void navigate() { driver.navigate().to(registerURL); }
 	 */
 	// Cách 2
+	RegisterPage registerPg;
+	HomePage clickHomePg;
 	@Before
 	public void click() {
-		clickOnElementByXpath(Locator.MEMBER_BUTTON_HOME_XPATH);
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_HOME_XPATH);
+		clickHomePg = new HomePage(driver);
+		clickHomePg.homeClick(HomePage.REGISTER_BUTTON_HOME_XPATH);
 	}
-
+	
 	// REGISTER FAIL BLANK
 	@Test
 	public void testRegisterwithBlankField() {
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register("", "", "", "", "", "");
+		
 		// Get error message
 		String errormessageName = getErroMessage("//div/div/div/div");
 		// Verify
@@ -52,45 +55,20 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithBlankName() {
-
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
+		registerPg = new RegisterPage(driver);
+		registerPg.register("", MessageInput.EMAIL, MessageInput.PASSWORD, MessageInput.CONFIRMPASS, MessageInput.ADDRESS, MessageInput.PHONE);
 
 		// Get error message
 		String errormessageName = getErroMessage("//div/div/div/div");
 		// Verify
 		Assert.assertEquals(MessageError.ERROR_MESSAGE_NAME, errormessageName);
-
 	}
 
 	@Test
 	public void testRegisterwithBlankEmail() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, "", MessageInput.PASSWORD, MessageInput.CONFIRMPASS, MessageInput.ADDRESS, MessageInput.PHONE);
+		
 		// Get error message
 		String errormessageEmail = getErroMessage("//div/div/div/div");
 		// Verify
@@ -99,20 +77,9 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithBlankPas() {
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, "", MessageInput.CONFIRMPASS, MessageInput.ADDRESS, MessageInput.PHONE);
+		
 		// Get error message
 		String errormessagePassword = getErroMessage("//div/div/div/div");
 		// Verify
@@ -125,20 +92,8 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithBlankCfPas() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, MessageInput.PASSWORD, "", MessageInput.ADDRESS, MessageInput.PHONE);
 
 		// Get error message
 		String errormessageCfPassword = getErroMessage("//div/div/div/div");
@@ -149,20 +104,8 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithBlankAddress() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, MessageInput.PASSWORD, MessageInput.CONFIRMPASS, "", MessageInput.PHONE);
 
 		// Get error message
 		String errormessageAddress = getErroMessage("//div/div/div/div");
@@ -173,21 +116,9 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithBlankPhone() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, MessageInput.PASSWORD, MessageInput.CONFIRMPASS, MessageInput.ADDRESS, "");
+		
 		// Get error message
 		String errormessagePhone = getErroMessage("//div/div/div/div");
 		// Verify
@@ -197,23 +128,9 @@ public class Register extends PageObject {
 	// REGISTER INPUT FAIL
 	@Test
 	public void testRegisterwithInputFailName() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.INPUT_FAIL);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.INPUT_FAIL, MessageInput.EMAIL, MessageInput.PASSWORD, MessageInput.CONFIRMPASS, MessageInput.ADDRESS, MessageInput.PHONE);
+		
 		// Get error message
 		String errormessageNameCharacter = getErroMessage("//div/div/div/div");
 		// Verify
@@ -222,22 +139,9 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithInputFailPas() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.INPUT_FAIL);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.INPUT_FAIL);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, MessageInput.INPUT_FAIL, MessageInput.INPUT_FAIL, MessageInput.ADDRESS, MessageInput.PHONE);
+		
 		// Get error message
 		String errormessagePasswordCharacter = getErroMessage("//div/div/div/div");
 		// Verify
@@ -251,23 +155,9 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithInputFailAddress() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.INPUT_FAIL);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, MessageInput.PASSWORD, MessageInput.CONFIRMPASS, MessageInput.INPUT_FAIL, MessageInput.PHONE);
+	
 		// Get error message
 		String errormessageAddressCharacter = getErroMessage("//div/div/div/div");
 		// Verify
@@ -277,22 +167,9 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithInputFailPhone() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.INPUT_FAIL);
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, MessageInput.PASSWORD, MessageInput.CONFIRMPASS, MessageInput.ADDRESS, MessageInput.INPUT_FAIL);
+		
 		// Get error message
 		String errormessagePhoneCharacter = getErroMessage("//div/div/div/div");
 		// Verify
@@ -302,22 +179,9 @@ public class Register extends PageObject {
 
 	@Test
 	public void testRegisterwithInputFailPasDifferentCfPas() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASSDIFFERENTPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, MessageInput.PASSWORD, MessageInput.CONFIRMPASSDIFFERENTPASS, MessageInput.ADDRESS, MessageInput.PHONE);
+		
 		// Get error message
 		String errormessagePassdifferentCfPass = getErroMessage("//div/div/div/div");
 		// Verify
@@ -328,23 +192,9 @@ public class Register extends PageObject {
 	// REGISTER SUCCESS
 	@Test
 	public void testRegisterwithInputFull() {
-
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, MessageInput.NAME);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, MessageInput.EMAIL);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, MessageInput.PASSWORD);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, MessageInput.CONFIRMPASS);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, MessageInput.ADDRESS);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, MessageInput.PHONE);
-
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-
+		registerPg = new RegisterPage(driver);
+		registerPg.register(MessageInput.NAME, MessageInput.EMAIL, MessageInput.PASSWORD, MessageInput.CONFIRMPASS, MessageInput.ADDRESS, MessageInput.PHONE);
+		
 		// refresh browser=> back home
 		driver.get(homeURL);
 

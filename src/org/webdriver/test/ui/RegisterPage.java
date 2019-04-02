@@ -2,33 +2,30 @@ package org.webdriver.test.ui;
 
 import org.openqa.selenium.WebDriver;
 import org.webdriver.test.PageObject;
-import org.webdriver.test.features.Locator;
 
 public class RegisterPage extends PageObject {
-	protected WebDriver driver;
+	WebDriver driver;
+	public static String REGISTER_BUTTON_XPATH = "//input[@value='Register']";
+	public static String NAME_FIELD = "name";
+	public static String EMAIL_FIELD = "email";
+	public static String PASSWORD_FIELD = "password";
+	public static String CONFIRM_PASSWORD_FIELD ="password_confirm" ;
+	public static String ADDRESS_FIELD = "address";
+	public static String PHONE_FIELD = "phone";
 
-	public void Register(WebDriver driver) {
+	public  RegisterPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	public HomePage register(String name, String email, String password, String confirm_password, String address,
+	public void register(String name, String email, String password, String confirm_password, String address,
 			String phone) {
-		// input name
-		EnterValue(Locator.NAME_FIELD, null, null, name);
-		// input email
-		EnterValue(Locator.EMAIL_FIELD, null, null, email);
-		// input password
-		EnterValue(Locator.PASSWORD_FIELD, null, null, password);
-		// input confirm password
-		EnterValue(Locator.CONFIRM_PASSWORD_FIELD, null, null, confirm_password);
-		// input address
-		EnterValue(Locator.ADDRESS_FIELD, null, null, address);
-		// input phone number
-		EnterValue(Locator.PHONE_FIELD, null, null, phone);
-		// click button register
-		clickOnElementByXpath(Locator.REGISTER_BUTTON_XPATH);
-		// back home
-		return new HomePage(driver);
+		EnterValue(NAME_FIELD, null, null, name);
+		EnterValue(EMAIL_FIELD, null, null, email);
+		EnterValue(PASSWORD_FIELD, null, null, password);
+		EnterValue(CONFIRM_PASSWORD_FIELD, null, null, confirm_password);
+		EnterValue(ADDRESS_FIELD, null, null, address);
+		EnterValue(PHONE_FIELD, null, null, phone);
+		clickOnElementByXpath(REGISTER_BUTTON_XPATH);
 	}
 
 }

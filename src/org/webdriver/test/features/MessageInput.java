@@ -10,7 +10,7 @@ public class MessageInput {
 	public static String PHONE = "0979339597";
 	public static String EMAILLOGIN = "kieu.tranthithuy@vti.com.vn";
 	public static String PASSLOGIN = "thuykieu0910";
-	public static String INPUT_FAIL = "01";
+	public static String INPUT_FAIL = "01"; 
 }
 
 

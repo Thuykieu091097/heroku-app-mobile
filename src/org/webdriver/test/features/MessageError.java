@@ -1,7 +1,7 @@
 package org.webdriver.test.features;
 
 public class MessageError {
-	public static String ERROR_MESSAGE_NAME = "The name field is required.";
+	public static String ERROR_MESSAGE_NAME = "The name field is required.";  
 	public static String ERROR_MESSAGE_EMAIL = "The email field is required.";
 	public static String ERROR_MESSAGE_PASSWORD = "The password field is required.";
 	public static String ERROR_MESSAGE_CONFIRMPASS = "The password confirm field is required.";

@@ -1,5 +1,5 @@
 package org.webdriver.test;
-  
+
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.By;
@@ -33,33 +33,40 @@ public class PageObject {
 	//
 
 	// INPUT FIELDS
-	/*
-	 * protected void sendKeysByXpath(String myXpath, String value) {
-	 * driver.findElement(By.xpath(myXpath)).sendKeys(value); }
-	 * 
-	 * protected void sendKeysById(String myID, String value) {
-	 * driver.findElement(By.id(myID)).sendKeys(value); }
-	 * 
-	 * protected void sendKeysByCss(String myCss, String value) {
-	 * driver.findElement(By.cssSelector(myCss)).sendKeys(value); }
-	 */
 
-	public static void EnterValue(String myID, String myXpath, String myCss, String value) {
-		if (myID != null && value != null) {
-			driver.findElement(By.id(myID)).sendKeys(value);
+	public void EnterValue(String locator, String value) {
+		
+		if (locator.startsWith("id=")) {
+			locator = locator.substring(3);
+			driver.findElement(By.id(locator)).sendKeys(value);
+		} else if (locator.startsWith("xpath=")) {
+			locator = locator.substring(6);
+			driver.findElement(By.xpath(locator)).sendKeys(value);
+		} else if (locator.startsWith("css=")) {
+			locator = locator.substring(4);
+			driver.findElement(By.cssSelector(locator)).sendKeys(value);
 		}
-
-		else if (myXpath != null && value != null) {
-			driver.findElement(By.xpath(myXpath)).sendKeys(value);
-		}
-
-		else {
-			driver.findElement(By.cssSelector(myXpath)).sendKeys(value);
-		}
+		
 	}
 
 	// CLICK
-	public void clickOnElementByXpath(String myXpath) {
+	
+	public void clickOnElement(String locator) {
+		
+		if (locator.startsWith("id=")) {
+			locator = locator.substring(3);
+			driver.findElement(By.id(locator)).click();
+		}
+		else if(locator.startsWith("xpath=")) {
+			locator = locator.substring(6);
+			driver.findElement(By.xpath(locator)).click();
+		}
+		else if(locator.startsWith("css=")) {
+			locator = locator.substring(4);
+			driver.findElement(By.cssSelector(locator)).click();
+		}
+	}
+	/*public void clickOnElementByXpath(String myXpath) {
 
 		driver.findElement(By.xpath(myXpath)).click();
 	}
@@ -70,7 +77,7 @@ public class PageObject {
 
 	public void clickOnElementByCss(String myCss) {
 		driver.findElement(By.cssSelector(myCss)).click();
-	}
+	}*/
 	//
 
 	// GET MESSAGE ERROR
